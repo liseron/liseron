@@ -1,0 +1,394 @@
+  1 import javax.swing.JOptionPane;
+  2 import java.util.Random;
+  3 public class Arithmetic {
+  4 
+  5     public static void main(String[] args) {
+  6         // TODO 自动生成的方法存根
+  7         int x=0,x1=0,x2=0,x3=0,x4=0,x5=0,x6=0,x7=0,x8=0;
+  8         int a=0,b=0,c=0,d=0,e=0;
+  9         int flag=0;
+ 10         int y1,y2,y3;
+ 11         int y;//有括号的四则运算中所参与的数字个数
+ 12         String out="";
+ 13         Random rand = new Random();
+ 14         for(int i=0;i<1000000000;i++)
+ 15         {
+ 16             /*选择*/
+ 17            String input=JOptionPane.showInputDialog("请输入选择：1、出2位数运算 2、多位数运算 3、退出");
+ 18            x=Integer.parseInt(input);
+ 19            if(x==1)
+ 20            {
+ 21            String input1=JOptionPane.showInputDialog("请输入选择：1 、有乘除法 2、无乘除法");
+ 22           // String input2=JOptionPane.showInputDialog("请输入选择:1、有括号 2、无括号");
+ 23            String input3=JOptionPane.showInputDialog("请输入数值范围的前域 ");
+ 24            String input4=JOptionPane.showInputDialog("请输入数值范围的后域");
+ 25            String input5=JOptionPane.showInputDialog("请输入选择：1、加减有负数 2、加减无负数");
+ 26            String input6=JOptionPane.showInputDialog("请输入选择：1、除法有余数 2、除法无余数");
+ 27            String input7=JOptionPane.showInputDialog("请输入出题数量");
+ 28            String input8=JOptionPane.showInputDialog("请输入在一行中输出几列运算式？");       
+ 29            x1=Integer.parseInt(input1);
+ 30           // x2=Integer.parseInt(input2);
+ 31            x3=Integer.parseInt(input3);
+ 32            x4=Integer.parseInt(input4);
+ 33            x5=Integer.parseInt(input5);
+ 34            x6=Integer.parseInt(input6);
+ 35            x7=Integer.parseInt(input7);
+ 36            x8=Integer.parseInt(input8);
+ 37          //定义数组
+ 38              String []s=new String[2*x7];
+ 39               /*设置出题多少的循环*/
+ 40              for(int w=0;w<x7;w++)
+ 41             {
+ 42                  int w1;
+ 43                  w1=w;
+ 44                 // w4++;//用于换行的变量
+ 45 
+ 46               //有无乘除法
+ 47               if(x1==1)
+ 48               {
+ 49                 e=rand.nextInt(4);
+ 50               }
+ 51               else if(x1==2)
+ 52               {
+ 53                   e=rand.nextInt(2);
+ 54               }
+ 55               //数值范围
+ 56                a=rand.nextInt(x4)%(x4-x3+1)+x3;
+ 57                b=rand.nextInt(x4)%(x4-x3+1)+x3;
+ 58 
+ 59               //加减有无负数
+ 60                if(x5==1)//有负数
+ 61                {
+ 62                    flag=0;
+ 63                }
+ 64                if(x5==2)//无负数
+ 65                {
+ 66                    y1=a+b;
+ 67                    y2=a-b;
+ 68                    if(e==0)
+ 69                    {
+ 70                        if(y1<0)
+ 71                        {
+ 72                            flag=1;
+ 73                        }
+ 74                    }
+ 75                    else if(e==1)
+ 76                    {
+ 77                        if(y2<0)
+ 78                        {
+ 79                            flag=1;
+ 80                        }
+ 81                    }
+ 82                }
+ 83             
+ 84                //符号
+ 85                  if(e==0)
+ 86                  {
+ 87                     out="+"; 
+ 88                  }
+ 89                  if(e==1)
+ 90                  {
+ 91                      out="-";
+ 92                  }
+ 93                  if(e==2)
+ 94                  {
+ 95                      out="*";
+ 96                  }
+ 97                  if(e==3)
+ 98                  {
+ 99                   
+100                      if(b==0)
+101                      {flag=1;}
+102                      if(b!=0)
+103                      {
+104                        //除法有无余数
+105                          if(x6==1)
+106                          {
+107                            flag=0;  
+108                            out="/";
+109                          }
+110                          if(x6==2)
+111                          {
+112                             y3=a%b;
+113                             if(y3!=0)
+114                             {
+115                                 flag=1;
+116                             }
+117                              
+118                          }
+119 
+120                      }
+121                  }
+122                
+123                  s[w]=a+out+b;                
+124                //判断重复
+125                    for(int w2=0;w2<w1;w2++)
+126                  {
+127                      if(s[w].equals(s[w2]))
+128                      {
+129                          flag =1;
+130                      }
+131                      else
+132                      {flag =0;}
+133                  }
+134                if(flag==0)
+135                 {   
+136                    if((w+1)%x8==0)
+137                    {
+138                        System.out.println(s[w]+"=");
+139                    }
+140                    else
+141                    {
+142                     System.out.print(s[w]+"=  ");
+143                    }                    
+144                 }
+145                 else if(flag==1)
+146                 {x7++;}   
+147            }//for 
+148           }//if
+149            if(x==2)
+150            {
+151                String input1=JOptionPane.showInputDialog("请输入选择：1 、有乘除法 2、无乘除法");
+152                String input2=JOptionPane.showInputDialog("请输入选择:1、有括号 2、无括号");
+153                String input3=JOptionPane.showInputDialog("请输入数值范围的前域 ");
+154                String input4=JOptionPane.showInputDialog("请输入数值范围的后域");
+155                String input5=JOptionPane.showInputDialog("请输入选择：1、加减有负数 2、加减无负数");
+156                String input6=JOptionPane.showInputDialog("请输入选择：1、除法有余数 2、除法无余数");
+157                String input7=JOptionPane.showInputDialog("请输入出题数量");
+158                String input8=JOptionPane.showInputDialog("请输入在一行中输出几列                   运算式？");       
+159                x1=Integer.parseInt(input1);
+160                x2=Integer.parseInt(input2);
+161                x3=Integer.parseInt(input3);
+162                x4=Integer.parseInt(input4);
+163                x5=Integer.parseInt(input5);
+164                x6=Integer.parseInt(input6);
+165                x7=Integer.parseInt(input7);
+166                x8=Integer.parseInt(input8);
+167              //定义数组
+168                  String []s=new String[2*x7];
+169                   /*设置出题多少的循环*/
+170                  for(int w=0;w<x7;w++)
+171                 {
+172                      int w1;
+173                      w1=w;
+174                     // w4++;//用于换行的变量
+175 
+176                   //有无乘除法
+177                   if(x1==1)
+178                   {
+179                     e=rand.nextInt(4);
+180                   }
+181                   else if(x1==2)
+182                   {
+183                       e=rand.nextInt(2);
+184                   }
+185                   //数值范围
+186                    a=rand.nextInt(x4)%(x4-x3+1)+x3;
+187                    b=rand.nextInt(x4)%(x4-x3+1)+x3;
+188                   
+189                   //加减有无负数
+190                    if(x5==1)//有负数
+191                    {
+192                        flag=0;
+193                    }
+194                    if(x5==2)//无负数
+195                    {
+196                        y1=a+b;
+197                        y2=a-b;
+198                        if(e==0)
+199                        {
+200                            if(y1<0)
+201                            {
+202                                flag=1;
+203                            }
+204                        }
+205                        else if(e==1)
+206                        {
+207                            if(y2<0)
+208                            {
+209                                flag=1;
+210                            }
+211                        }
+212                    }
+213                    //除法有无余数
+214                    if(x6==1)
+215                    {
+216                      flag=0;
+217                    }
+218                    if(x6==2)
+219                    {
+220                       y3=a%b;
+221                       if(y3!=0)
+222                       {
+223                           flag=1;
+224                       }
+225                    }
+226                     
+227                    //符号
+228                      if(e==0)
+229                      {
+230                         out="+"; 
+231                      }
+232                      if(e==1)
+233                      {
+234                          out="-";
+235                      }
+236                      if(e==2)
+237                      {
+238                          out="*";
+239                      }
+240                      if(e==3)
+241                      {
+242                       
+243                          if(d==0)
+244                          {flag=1;}
+245                          if(d!=0)
+246                          {
+247                          out="/";
+248                          }
+249                      }
+250                    
+251                    
+252                      s[w]=a+out+b; 
+253                      
+254                      //有无括号
+255                       y=rand.nextInt(10)%(9)+2;
+256                       int p;//随机出数，选择在原来的式子之前加数还是之后
+257 
+258                      if(x2==1)
+259                      {
+260                          
+261                            for(int r=0;r<(y-2);r++) 
+262                            {
+263                                c=rand.nextInt(x4)%(x4-x3+1)+x3;
+264                                 d=rand.nextInt(x4)%(x4-x3+1)+x3;
+265 
+266                                if(x1==1)
+267                              {
+268                                e=rand.nextInt(4);
+269                              }
+270                              else if(x1==2)
+271                              {
+272                                  e=rand.nextInt(2);
+273                              } 
+274                           
+275                              //符号
+276                              if(e==0)
+277                              {
+278                                 out="+"; 
+279                              }
+280                              if(e==1)
+281                              {
+282                                  out="-";
+283                              }
+284                              if(e==2)
+285                              {
+286                                  out="*";
+287                              }
+288                              if(e==3)
+289                              {
+290                               
+291                                  if(d==0)
+292                                  {flag=1;}
+293                                  if(d!=0)
+294                                  {
+295                                  out="/";
+296                                  }
+297                              }
+298                               
+299                                 p=rand.nextInt(2);
+300                                if(p==0)
+301                                {
+302                                    s[w]=c+out+"("+s[w]+")";
+303                                }
+304                                if(p==1)
+305                                {
+306                                    s[w]="("+s[w]+")"+out+d;
+307                                }
+308                            }
+309                      }
+310                         if(x2==2)
+311                      {
+312                             for(int r=0;r<(y-2);r++) 
+313                             {
+314                                c=rand.nextInt(x4)%(x4-x3+1)+x3;
+315                              d=rand.nextInt(x4)%(x4-x3+1)+x3;
+316 
+317                            if(x1==1)
+318                             {
+319                                e=rand.nextInt(4);
+320                             }
+321                             else if(x1==2)
+322                             {
+323                                e=rand.nextInt(2);
+324                             } 
+325                     
+326                            //符号
+327                           if(e==0)
+328                           {
+329                              out="+"; 
+330                           }
+331                           if(e==1)
+332                           {
+333                             out="-";
+334                           }
+335                           if(e==2)
+336                           {
+337                              out="*";
+338                           }
+339                          if(e==3)
+340                          {
+341                         
+342                            if(d==0)
+343                            {flag=1;}
+344                            if(d!=0)
+345                            {
+346                            out="/";
+347                            }
+348                        }
+349                         
+350                                 p=rand.nextInt(1);
+351                                if(p==0)
+352                                {
+353                                    s[w]=c+out+s[w];
+354                                }
+355                                if(p==1)
+356                                {
+357                                    s[w]=s[w]+out+d;
+358                                }
+359                             }
+360                      }
+361                         
+362                         
+363                         
+364                    //判断重复
+365                        for(int w2=0;w2<w1;w2++)
+366                      {
+367                          if(s[w].equals(s[w2]))
+368                          {
+369                              flag =1;
+370                          }
+371                          else
+372                          {flag =0;}
+373                      }
+374                    if(flag==0)
+375                     {   
+376                        if((w+1)%x8==0)
+377                        {
+378                            System.out.println(s[w]+"=");
+379                        }
+380                        else
+381                        {
+382                         System.out.print(s[w]+"=  ");
+383                        }                    
+384                     }
+385                     else if(flag==1)
+386                     {x7++;}   
+387                }//for   
+388            }
+389            if(x==3)
+390             {break;}
+391         }
+392     }
+393 
+394 }
