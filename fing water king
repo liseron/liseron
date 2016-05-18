@@ -1,0 +1,42 @@
+import java.util.Scanner;
+public class Select {
+
+	public static void main(String[] args) {
+		// TODO 自动生成的方法存根
+		System.out.println("共有多少个帖子");
+		Scanner input =new Scanner(System.in);
+		int x=input.nextInt();
+        String a[]=new String[x];
+        //发帖子情况
+        for(int i=0;i<x;i++)
+        {
+        	System.out.println("请输入第"+(i+1)+"个帖子的作者id");
+        	Scanner input1 =new Scanner(System.in);
+    		a[i]=input1.nextLine();
+        }
+        //找水王
+        String s=a[0];//水王
+        int c=1;//c是水王最后净帖子数，如果c不是正数则不是水王
+        for(int i=0;i<x;i++)
+        {
+            if(!s.equals(a[i]))//相等继续
+            {
+            	c--;
+            	if(c<=0)
+            	{
+            		s=a[i+1];
+            		c=1;
+            		i++;
+            	}
+            }
+            else
+            {
+            	
+            	s=a[i];
+            	c++;
+            }
+        }
+        System.out.println("水王是"+s);
+	}
+
+}
